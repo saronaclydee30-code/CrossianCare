@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Crossian Care</title>
+    <link rel="stylesheet" href="MainDashboard.css">
+    <link href="images/HcdcLogo.png" rel="icon">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="MainDashboard.html" class="logo">
+            <img src="Images/HcdcLogo.png" alt="HCDC Clinic Logo" class="logo-img">
+            Crossian<span>Care</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="MainDashboard.html" class="active">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="Emergency.html" class="btn-cta">Emergency Contact</a></li>
+        </ul>
+    </nav>
+
+    <header id="home" class="hero">
+        <div class="hero-content">
+            <div class="badge"><strong>Welcome to Crossian Care</strong></div>
+            <h1>Empowering <br><span>Healthy Students</span></h1>
+            <p><strong>The HCDC school portal for medical support, mental health resources, and campus wellness updates.</strong></p>
+            <div class="hero-btns">
+                <a href="services.html" class="btn-primary">Our Services</a>
+                <button id="emailUsBtn" class="btn-secondary-outline" style="cursor: pointer; background: transparent;">Email Us</button>
+            </div>
+        </div>
+    </header>
+
+    <section id="status" class="status-bar">
+        <div class="status-card">
+            <div class="status-info">
+                <span id="statusDot" class="dot"></span> 
+                <p id="statusText"><strong>Current Status:</strong> Checking...</p>
+            </div>
+
+            <div class="status-info">
+                <span class="icon">
+                    <img src="Images/clock.png" alt="Clock Icon">
+                </span>
+                <p><strong>Est. Wait Time:</strong> 10 - 15 mins</p>
+            </div>
+
+            <div class="status-info">
+                <span class="icon">
+                    <img src="Images/onduty.png" alt="Doctor Icon">
+                </span>
+                <p><strong>On-Duty:</strong> Dr. Rhian Clyde Cookin</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="wellness-hub">
+        <div class="container">
+            <h2 class="section-title">Weekly Wellness Tips</h2>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <div class="tip-icon">
+                        <img src="Images/water.png" alt="Hydration">
+                    </div>
+                    <h3>Hydration Goal</h3>
+                    <p>Keep your energy up! Aim for 8 glasses of water today.</p>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-icon">
+                        <img src="Images/mindful.png" alt="Mindfulness">
+                    </div>
+                    <h3>Mindful Minute</h3>
+                    <p>Feeling stressed? Take 60 seconds for deep breathing.</p>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-icon">
+                        <img src="Images/smartsnack.png" alt="Healthy Snack">
+                    </div>
+                    <h3>Smart Snack</h3>
+                    <p>Swap processed sugars for a piece of seasonal fruit.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="appointment-cta">
+        <div class="cta-content">
+            <h2>Need a Checkup?</h2>
+            <p>Skip the line by scheduling your visit in advance through our portal.</p>
+            
+            <button id="appointmentBtn" class="btn-appointment">Schedule Appointment</button>
+        </div>
+    </section>
+
+    <div id="sideDrawer" class="side-drawer">
+        <div class="drawer-content">
+            <span id="closeDrawer" class="close-btn">&times;</span>
+            <div class="form-header-mini">
+                <h2>Book a Consultation</h2>
+                <p>Fill out the details below to secure your slot.</p>
+            </div>
+            
+            <form id="clinicForm" class="appointment-card-mini">
+                <div class="input-group">
+                    <label>Full Name</label>
+                    <input type="text" placeholder="Enter your full name" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Student ID Number</label>
+                    <input type="text" id="studentID" placeholder="e.g. 59845666" pattern="[0-9]*" inputmode="numeric" required>
+                </div>
+
+                <div class="input-group">
+                    <label>HCDC Email</label>
+                    <input type="email" id="hcdcEmail" placeholder="name@hcdc.edu.ph" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Reason for Visit</label>
+                    <select required>
+                        <option value="">Select a reason</option>
+                        <option value="checkup">General Checkup</option>
+                        <option value="dental">Dental Consultation</option>
+                        <option value="mental-health">Mental Health Consultation</option>
+                        <option value="emergency">Minor Injury</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Preferred Date</label>
+                    <input type="date" required>
+                </div>
+
+                <button type="submit" class="btn-appointment">Confirm Booking</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="emailDrawer" class="side-drawer">
+        <div class="drawer-content">
+            <span id="closeEmailDrawer" class="close-btn">&times;</span>
+            <div class="form-header-mini">
+                <h2>Email Crossian Care</h2>
+                <p>Your message will open in your default email app.</p>
+            </div>
+            
+            <form id="emailForm" class="appointment-card-mini">
+                <div class="input-group">
+                    <label>Your Contact Email</label>
+                    <input type="email" id="userEmail" placeholder="Enter your email" required>
+                </div>
+
+                <div class="input-group" style="margin-top: 15px;">
+                    <label>Subject</label>
+                    <input type="text" id="emailSubject" placeholder="Reason for inquiry" required>
+                </div>
+
+                <div class="input-group" style="margin-top: 15px;">
+                    <label>Message</label>
+                    <textarea id="emailMessage" rows="8" placeholder="Type your message here..." required 
+                        style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px; font-family: inherit;"></textarea>
+                </div>
+
+                <button type="submit" class="btn-appointment" style="margin-top: 20px;">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="drawerOverlay" class="drawer-overlay"></div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 School Clinic. All Rights Reserved.</p>
+            <p>GH Building, Room 103 | mdc@hcdc.edu.ph</p>
+        </div>
+    </footer>
+
+    <script type="module" src="MainDashboard.js"></script>
+</body>
+</html>

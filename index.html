@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Crossian Care</title>
+    <link rel="stylesheet" href="index.css">
+    <link href="Images/HcdcLogo.png" rel="icon">
+</head>
+<body>
+
+    <div class="login-wrapper">
+        <div class="info-side">
+            <div class="badge"><strong>A School Clinic Management System</strong></div>
+            <h1 class="brand-title">Crossian<span>Care</span></h1>
+            
+            <p>The <strong>Holy Cross of Davao College</strong> is a Christ-centered globally responsive institution dedicated to providing quality education and holistic development to our students.</p>
+            
+            <p>Cultivating excellence in innovation and holistic development. Serving the marginalized with humility and compassion.</p>
+            
+            <p>From faith to truth, we uphold the values of servant leadership, stewardship, and synodality, with wisdom as the underlying principle.</p>
+        </div>
+
+        <div class="login-card">
+            <div class="card-header">
+                CROSSIAN CARE LOG-IN
+            </div>
+            <div class="card-content">
+                <img src="Images/HcdcLogo.png" alt="HCDC Logo" class="form-logo">
+                
+                <form id="loginForm">
+                    <div class="input-group">
+                        <label>HCDC Email</label>
+                        <input type="email" id="emailInput" placeholder="name@hcdc.edu.ph" required>
+                        <p id="error-msg" class="error-text">Please use your @hcdc.edu.ph account.</p>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Password</label>
+                        <input type="password" placeholder="••••••••" required>
+                    </div>
+
+                    <button type="submit" class="btn-primary-login">Submit</button>
+
+                    <div class="form-footer">
+                        <input type="checkbox" id="stay-signed">
+                        <label for="stay-signed">Stay Signed in</label>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | Crossian Care</title>
+    <link rel="stylesheet" href="Services.css">
+    <link href="Images/HcdcLogo.png" rel="icon">
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="MainDashboard.html" class="logo">
+            <img src="Images/HcdcLogo.png" alt="HCDC Logo" class="logo-img">
+            Crossian<span>Care</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="MainDashboard.html">Home</a></li>
+            <li><a href="services.html" class="active">Services</a></li>
+            <li><a href="About.html">About</a></li>
+            <li><a href="Emergency.html" class="btn-cta">Emergency Contact</a></li>
+        </ul>
+    </nav>
+
+    <header class="services-hero">
+        <div class="hero-content fade-in">
+            <div class="badge"><strong>Medical Excellence</strong></div>
+            <h1>Comprehensive <span>Care</span></h1>
+            <p><strong>From physical health to mental resilience, we support every aspect of student life.</strong></p>
+        </div>
+    </header>
+
+    <section class="detailed-services">
+        <div class="container">
+            
+            <div class="service-row">
+                <div class="service-info">
+                    <span class="tag"><strong>Medical</strong></span>
+                    <h2>Primary Healthcare</h2>
+                    <p>Our licensed nursing staff and visiting physicians provide immediate diagnostic support for all students.</p>
+                    <ul class="check-list">
+                        <li>Annual Physical Examinations</li>
+                        <li>Immunization Tracking</li>
+                        <li>Prescription Management</li>
+                    </ul>
+                </div>
+                <div class="service-display-card">
+                    <div class="inner-content">
+                        <span class="icon">🩺</span>
+                        <h3><strong>Clinical Support</strong></h3>
+                        <p>Walk-in consultations available from 8:00 AM to 5:00 PM daily.</p>
+                        <button id="viewScheduleBtn" class="btn-mini">View Schedule</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="service-row reverse">
+                <div class="service-info">
+                    <span class="tag"><strong>Wellness</strong></span>
+                    <h2>Mental & Emotional Well-being</h2>
+                    <p>We provide a sanctuary for st    udents facing academic pressure, anxiety, or personal challenges.</p>
+                    <ul class="check-list">
+                        <li>1-on-1 Counseling</li>
+                        <li>Stress Relief Workshops</li>
+                        <li>Peer Support Groups</li>
+                    </ul>
+                </div>
+                <div class="service-display-card wellness-card">
+                    <div class="inner-content">
+                        <span class="icon">🧠</span>
+                        <h3><strong>Mindfulness Space</strong></h3>
+                        <p>Book a private session in our quiet wellness pods.</p>
+                        <a href="MainDashboard.html#book" class="btn-mini" style="text-decoration: none; display: inline-block; text-align: center;">Book Session</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    
+
+    <section class="emergency-bar">
+        <h2>In case of an immediate medical crisis:</h2>
+        <p>Call the On-Campus Emergency Line: <strong>Ext. 9111</strong></p>
+        <a href="SafetyTips.html" class="btn-safety-white" style="text-decoration: none; display: inline-block;">See Safety Tips</a>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 School Clinic. All Rights Reserved.</p>
+            <p>GH Building, Room 103 | mdc@hcdc.edu.ph</p>
+        </div>
+    </footer>
+
+    <div id="sideDrawer" class="side-drawer">
+        <div class="drawer-content">
+            <span id="closeDrawer" class="close-btn">&times;</span>
+            <div class="form-header-mini">
+                <h2>Clinic Schedule</h2>
+                <p>Plan your visit according to our weekly operating hours.</p>
+            </div>
+
+            <table class="schedule-table">
+                <tr><td><strong>Monday</strong></td><td>8:00 AM - 5:00 PM</td></tr>
+                <tr><td><strong>Tuesday</strong></td><td>8:00 AM - 5:00 PM</td></tr>
+                <tr><td><strong>Wednesday</strong></td><td>8:00 AM - 5:00 PM</td></tr>
+                <tr><td><strong>Thursday</strong></td><td>8:00 AM - 5:00 PM</td></tr>
+                <tr><td><strong>Friday</strong></td><td>8:00 AM - 5:00 PM</td></tr>
+                <tr><td><strong>Saturday</strong></td><td>9:00 AM - 12:00 PM</td></tr>
+            </table>
+            
+            <button id="goBackBtn" class="btn-appointment" style="width: 100%; border: none; cursor: pointer;">Go Back</button>
+        </div>
+    </div>
+
+    <div id="drawerOverlay" class="drawer-overlay"></div>
+
+    <script type="module" src="services.js"></script>
+</body>
+</html>

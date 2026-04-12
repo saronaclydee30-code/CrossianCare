@@ -1,0 +1,225 @@
+:root {
+    --primary: #b00d08;
+    --primary-dark: #8b0a06;
+    --accent: #1e90ff;
+    --accent-light: #e6f2ff;
+    --white: #ffffff;
+    --danger: #e53e3e;
+    --text: #2d3748;
+    --bg-light: #fdf2f2;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--white);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+.btn-cta {
+    background: var(--primary) !important;
+    color: var(--white) !important;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-cta:hover {
+    background: var(--primary-dark) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(176, 13, 8, 0.3);
+}
+
+.emergency-hero {
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 6rem 10% 8rem 10%;
+    background: linear-gradient(135deg, var(--primary-dark), #1a202c);
+    color: white;
+    text-align: center;
+}
+
+.call-card {
+    background: white;
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    text-align: center;
+    border-bottom: 5px solid var(--accent);
+    transition: all 0.3s ease;
+}
+
+.call-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.call-card.urgent {
+    border-bottom: 5px solid var(--danger);
+}
+
+.call-link {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--primary);
+    text-decoration: none;
+    margin-top: 1rem;
+    transition: color 0.3s ease;
+}
+
+.call-link:hover {
+    color: var(--accent);
+}
+
+.contact-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    margin-bottom: 4rem;
+}
+
+.contact-table th {
+    background: var(--primary-dark);
+    color: white;
+    padding: 1.5rem;
+    text-align: left;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+.badge-emergency {
+    background: var(--danger);
+    color: var(--white);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    display: inline-block;
+}
+
+.quick-call-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: -60px;
+    margin-bottom: 4rem;
+}
+
+.call-card {
+    background: white;
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    text-align: center;
+    border-bottom: 5px solid var(--accent);
+}
+
+.call-card.urgent {
+    border-bottom: 5px solid var(--danger);
+}
+
+.call-card .icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.call-link {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--primary);
+    text-decoration: none;
+    margin-top: 1rem;
+}
+
+.contact-table th {
+    background: var(--primary-dark);
+    color: white;
+    padding: 1.5rem;
+    text-align: left;
+}
+
+.contact-table td {
+    padding: 1.5rem;
+    border-bottom: 1px solid #eee;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .quick-call-box {
+        grid-template-columns: 1fr;
+        margin-top: 2rem;
+    }
+    
+    .call-link {
+        font-size: 1.4rem;
+    }
+}
+
+.fade-in {
+    animation: fadeInUp 1s ease forwards;
+    opacity: 0;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.call-card:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.call-card:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+a.btn-cta active {
+    transform: scale(0.98);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.logo-img {
+    height: 32px;           
+    width: auto;
+    object-fit: contain;
+}
+
+.nav-links li a.btn-cta.active {
+    background-color: var(--primary) !important;
+    color: var(--white) !important;
+    opacity: 1;
+    border-bottom: none;
+    box-shadow: 0 4px 12px rgba(176, 13, 8, 0.2);
+}
+
+.btn-cta {
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
