@@ -54,6 +54,31 @@
     <footer>
         <div class="container">
             <p>&copy; 2026 School Clinic. All Rights Reserved.</p>
+            <p> abstract class Device {
+                protected String deviceName;
+            
+                public Device(String deviceName) {
+                    this.deviceName = deviceName;
+                }
+                public abstract void turnOn();
+            
+                static class Smartphone extends Device {
+                    public Smartphone(String deviceName) {
+                        super(deviceName);
+                    }
+            
+                    @Override
+                    public void turnOn() {
+                        System.out.println(deviceName + " is powering up.");
+                    }
+                }
+                public class Main {
+                    public static void main(String[] args) {
+                        Smartphone myPhone = new Smartphone("The smartphone Samsung Galaxy");
+                        myPhone.turnOn();
+                    }
+                }
+            } </p>
             <p>GH Building, Room 103 | mdc@hcdc.edu.ph</p>
         </div>
     </footer>
