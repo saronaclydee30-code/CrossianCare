@@ -5,15 +5,53 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const appointmentBtn = document.getElementById('appointmentBtn');
     const clinicForm = document.getElementById('clinicForm');
-    
     const emailUsBtn = document.getElementById('emailUsBtn');
     const emailDrawer = document.getElementById('emailDrawer');
     const closeEmailDrawer = document.getElementById('closeEmailDrawer');
     const emailForm = document.getElementById('emailForm');
     const overlay = document.getElementById('drawerOverlay');
+    
+    const profileTrigger = document.getElementById('profileTrigger');
+    const profileDropdown = document.getElementById('profileDropdown');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const initialsElement = document.getElementById('userInitials');
+    const emailDisplay = document.getElementById('displayEmail');
 
-    if (appointmentBtn) {
-        appointmentBtn.addEventListener('click', openDrawer);
+    const userEmailAddr = localStorage.getItem('userEmail') || "guest.user@hcdc.edu.ph"; 
+    
+    if (initialsElement) {
+        const namePart = userEmailAddr.split('@')[0]; 
+        const nameArray = namePart.split('.'); 
+
+        if (nameArray.length >= 2) {
+            const firstInitial = nameArray[0].charAt(0).toUpperCase();
+            const lastInitial = nameArray[1].charAt(0).toUpperCase();
+            initialsElement.textContent = firstInitial + lastInitial;
+        } else {
+            initialsElement.textContent = namePart.charAt(0).toUpperCase();
+        }
+        
+        if (emailDisplay) emailDisplay.textContent = userEmailAddr;
+    }
+
+    if (profileTrigger && profileDropdown) {
+        profileTrigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            profileDropdown.classList.toggle('active');
+        });
+
+        document.addEventListener('click', () => {
+            profileDropdown.classList.remove('active');
+        });
+    }
+
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+            if(confirm("Are you sure you want to log out?")) {
+                localStorage.removeItem('userEmail');
+                window.location.href = 'index.html';
+            }
+        });
     }
 
     if (emailUsBtn) {
@@ -40,28 +78,23 @@ document.addEventListener('DOMContentLoaded', () => {
     if (emailForm) {
         emailForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            const userEmail = document.getElementById('userEmail').value;
+            const senderEmail = document.getElementById('userEmail').value;
             const subject = encodeURIComponent(document.getElementById('emailSubject').value);
             const rawMessage = document.getElementById('emailMessage').value;
+            const body = encodeURIComponent(`Sender: ${senderEmail}\n\nMessage:\n${rawMessage}`);
             
-            const bodyText = `From: ${userEmail}\n\nMessage:\n${rawMessage}`;
-            const body = encodeURIComponent(bodyText);
-            
-            const clinicEmail = "clinic@hcdc.edu.ph";
-
-            window.location.href = `mailto:${clinicEmail}?subject=${subject}&body=${body}`;
-            
+            window.location.href = `mailto:clinic@hcdc.edu.ph?subject=${subject}&body=${body}`;
             closeEmail();
+            emailForm.reset();
         });
     }
+
+    if (appointmentBtn) appointmentBtn.addEventListener('click', openDrawer);
 
     if (clinicForm) {
         clinicForm.addEventListener('submit', function(e) {
             const emailInput = document.getElementById('hcdcEmail');
-            const emailValue = emailInput.value.toLowerCase();
-
-            if (!emailValue.endsWith('@hcdc.edu.ph')) {
+            if (!emailInput.value.toLowerCase().endsWith('@hcdc.edu.ph')) {
                 e.preventDefault(); 
                 emailInput.setCustomValidity("Please use your HCDC email.");
                 emailInput.reportValidity();
@@ -73,66 +106,32 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    function updateClinicStatus() {
+        const statusDot = document.getElementById('statusDot');
+        const statusText = document.getElementById('statusText');
+        if (!statusDot || !statusText) return;
+
+        const now = new Date();
+        const hour = now.getHours();
+        const day = now.getDay();
+        const isOpen = (day !== 0 && day !== 6 && hour >= 8 && hour < 17);
+
+        if (isOpen) {
+            statusDot.className = 'dot open';
+            statusText.innerHTML = `<strong>Current Status:</strong> Open until 5:00 PM`;
+        } else {
+            statusDot.className = 'dot closed';
+            statusText.innerHTML = `<strong>Current Status:</strong> Closed (Opens 8:00 AM)`;
+        }
+    }
+
+    updateClinicStatus();
+    setInterval(updateClinicStatus, 60000);
+
     if (window.location.hash === '#book') {
         setTimeout(() => {
             openDrawer();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }, 300); 
     }
-
-    if (emailForm) {
-        emailForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const senderEmail = document.getElementById('userEmail').value;
-            const subject = encodeURIComponent(document.getElementById('emailSubject').value);
-            const rawMessage = document.getElementById('emailMessage').value;
-            
-            const bodyText = `Sender Email: ${senderEmail}\n\nMessage:\n${rawMessage}`;
-            const body = encodeURIComponent(bodyText);
-            
-            const clinicEmail = "clinic@hcdc.edu.ph";
-
-            window.location.href = `mailto:${clinicEmail}?subject=${subject}&body=${body}`;
-            
-            closeEmail();
-            emailForm.reset(); 
-        });
-        }
-
-        function updateClinicStatus() {
-        const statusDot = document.getElementById('statusDot');
-        const statusText = document.getElementById('statusText');
-
-        if (!statusDot || !statusText) return;
-
-        const now = new Date();
-        const currentHour = now.getHours();
-        const currentDay = now.getDay();
-
-        const openTime = 8;
-        const closeTime = 17;
-        const isWeekend = (currentDay === 0 || currentDay === 6);
-
-        let isOpen = false;
-
-        if (!isWeekend && currentHour >= openTime && currentHour < closeTime) {
-            isOpen = true;
-        }
-
-        if (isOpen) {
-            statusDot.classList.remove('closed');
-            statusDot.classList.add('open');
-            statusText.innerHTML = `<strong>Current Status:</strong> Open until ${closeTime - 12}:00 PM`;
-        } else {
-            statusDot.classList.remove('open');
-            statusDot.classList.add('closed');
-            let message = isWeekend ? "Closed for the Weekend" : "Closed (Opens at 8:00 AM)";
-            statusText.innerHTML = `<strong>Current Status:</strong> ${message}`;
-        }
-    }
-
-    updateClinicStatus();
-
-    setInterval(updateClinicStatus, 60000);
 });

@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | Crossian Care</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="index.css">
     <link href="Images/HcdcLogo.png" rel="icon">
 </head>
@@ -11,14 +13,20 @@
 
     <div class="login-wrapper">
         <div class="info-side">
-            <div class="badge"><strong>A School Clinic Management System</strong></div>
-            <h1 class="brand-title">Crossian<span>Care</span></h1>
-            
-            <p>The <strong>Holy Cross of Davao College</strong> is a Christ-centered globally responsive institution dedicated to providing quality education and holistic development to our students.</p>
-            
-            <p>Cultivating excellence in innovation and holistic development. Serving the marginalized with humility and compassion.</p>
-            
-            <p>From faith to truth, we uphold the values of servant leadership, stewardship, and synodality, with wisdom as the underlying principle.</p>
+            <div class="info-content">
+                <div class="badge"><i class="fas fa-microscope"></i> A School Clinic Management System</div>
+                <h1 class="brand-title">Crossian<span>Care</span></h1>
+                
+                <div class="mission-text">
+                    <p>The <strong>Holy Cross of Davao College</strong> is a Christ-centered globally responsive institution dedicated to providing quality education and holistic development.</p>
+                    <p>From faith to truth, we uphold the values of servant leadership, stewardship, and synodality.</p>
+                </div>
+
+                <div class="info-footer">
+                    <span><i class="fas fa-shield-alt"></i> Secure Access</span>
+                    <span><i class="fas fa-heartbeat"></i> Student Wellness</span>
+                </div>
+            </div>
         </div>
 
         <div class="login-card">
@@ -31,26 +39,52 @@
                 <form id="loginForm">
                     <div class="input-group">
                         <label>HCDC Email</label>
-                        <input type="email" id="emailInput" placeholder="name@hcdc.edu.ph" required>
+                        <div class="input-wrapper-inner">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="emailInput" placeholder="name@hcdc.edu.ph" required>
+                        </div>
                         <p id="error-msg" class="error-text">Please use your @hcdc.edu.ph account.</p>
                     </div>
 
                     <div class="input-group">
                         <label>Password</label>
-                        <input type="password" placeholder="••••••••" required>
+                        <div class="input-wrapper-inner">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="passwordInput" placeholder="••••••••" required>
+                            <i class="fas fa-eye toggle-password" onclick="togglePassword()"></i>
+                        </div>
                     </div>
 
-                    <button type="submit" class="btn-primary-login">Submit</button>
-
-                    <div class="form-footer">
-                        <input type="checkbox" id="stay-signed">
-                        <label for="stay-signed">Stay Signed in</label>
+                    <div class="form-options">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="stay-signed">
+                            <span class="checkmark"></span>
+                            Stay Signed in
+                        </label>
+                        <a href="#" class="forgot-link">Forgot Password?</a>
                     </div>
+
+                    <button type="submit" class="btn-primary-login">
+                        Login to Portal <i class="fas fa-arrow-right"></i>
+                    </button>
                 </form>
             </div>
         </div>
     </div>
 
+    <script>
+        function togglePassword() {
+            const input = document.getElementById('passwordInput');
+            const icon = document.querySelector('.toggle-password');
+            if (input.type === "password") {
+                input.type = "text";
+                icon.classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+                input.type = "password";
+                icon.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        }
+    </script>
     <script src="index.js"></script>
 </body>
 </html>

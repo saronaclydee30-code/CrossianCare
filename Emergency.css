@@ -195,8 +195,8 @@ body {
     animation-delay: 0.4s;
 }
 
-a.btn-cta active {
-    transform: scale(0.98);
+a.btn-cta.active {
+    transform: scale(1);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
@@ -215,11 +215,65 @@ a.btn-cta active {
 }
 
 .btn-cta {
-    padding: 0.6rem 1.2rem;
-    border-radius: 6px;
+    padding: 10px 30px;
+    border-radius: 12px;
     font-weight: 600;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
+}
+
+.profile-container {
+    position: relative;
+    margin-left: 1.5rem;
+    cursor: pointer;
+}
+
+.profile-icon {
+    width: 45px;
+    height: 45px;
+    background-color: var(--accent);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border: 2px solid var(--white);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.profile-dropdown {
+    display: none;
+    position: absolute;
+    top: 55px;
+    right: 0;
+    background: white;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 1001;
+    min-width: 120px;
+}
+
+.profile-dropdown.show {
+    display: block;
+}
+
+.logout-link {
+    width: 100%;
+    padding: 12px 20px;
+    border: none;
+    background: none;
+    color: var(--danger);
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.logout-link:hover {
+    background: var(--bg-light);
 }
