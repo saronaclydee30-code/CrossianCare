@@ -113,15 +113,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const now = new Date();
         const hour = now.getHours();
-        const day = now.getDay();
-        const isOpen = (day !== 0 && day !== 6 && hour >= 8 && hour < 17);
+        const day = now.getDay(); 
+
+        const isOpen = (day >= 2 && day <= 6 && hour >= 8 && hour < 17);
 
         if (isOpen) {
             statusDot.className = 'dot open';
             statusText.innerHTML = `<strong>Current Status:</strong> Open until 5:00 PM`;
         } else {
             statusDot.className = 'dot closed';
-            statusText.innerHTML = `<strong>Current Status:</strong> Closed (Opens 8:00 AM)`;
+            
+            let reopenMessage = "Opens 8:00 AM";
+
+            if (day === 0 || day === 1 || (day === 6 && hour >= 17)) {
+                reopenMessage = "Opens Tuesday 8:00 AM";
+            }
+
+            statusText.innerHTML = `<strong>Current Status:</strong> Closed (${reopenMessage})`;
         }
     }
 
