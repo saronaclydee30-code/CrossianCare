@@ -50,7 +50,7 @@ body {
 }
 
 .logo-img {
-    height: 32px;           
+    height: 45px;           
     width: auto;
     object-fit: contain;
 }
@@ -275,7 +275,7 @@ body {
     padding: 1rem;
     background: var(--accent);
     color: var(--white);
-    border: none;
+    border: 2px solid transparent; /* ← add this */
     border-radius: 50px;
     font-weight: 700;
     cursor: pointer;
@@ -290,6 +290,7 @@ body {
     background: var(--white);
     color: var(--accent);
     transform: scale(1.05);
+    border: 2px solid var(--accent); /* ← add this */
 }
 
 footer {
@@ -412,7 +413,7 @@ footer {
     padding: 1.2rem 3rem;
     background: var(--accent);
     color: var(--white);
-    border: none;
+    border: 2px solid transparent;
     border-radius: 50px;
     font-weight: 700;
     cursor: pointer;
@@ -423,7 +424,7 @@ footer {
     background: var(--white);
     color: var(--accent);
     transform: scale(1.05);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    border: 2px solid var(--accent);
 }
 
 .btn-safety-white:active {
@@ -445,65 +446,14 @@ footer {
     color: var(--primary);
 }
 
-.how-it-works {
-    padding-top: 2rem;
-    padding-bottom: 0rem;   
-    background: var(--white);
-}
-
-.steps-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-top: 1.5rem;
-}
-
-.step-card {
-    padding: 2.5rem;
-    background: var(--bg-light);
-    border-radius: 15px;
-    position: relative;
-    transition: 0.3s;
-    border-left: 4px solid var(--primary);
-}
-
 .step-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
 
-.step-number {
-    font-size: 3rem;
-    font-weight: 800;
-    color: rgba(176, 13, 8, 0.1);
-    position: absolute;
-    top: 10px;
-    right: 20px;
-}
-
 .step-card h3 {
     margin-bottom: 1rem;
     color: var(--primary);
-}
-
-.stats-section {
-    padding: 4rem 10%;
-    background: var(--secondary-blue);
-    color: white;
-}
-
-.stats-grid {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 2rem;
-    text-align: center;
-}
-
-.stat-item .stat-number {
-    font-size: 2.5rem;
-    font-weight: 800;
-    margin-bottom: 0.5rem;
 }
 
 .stat-item p {
@@ -572,4 +522,73 @@ footer {
 
 .logout-link:hover {
     background: var(--bg-light);
+}
+
+.service-faq { padding: 4rem 10%; }
+
+.faq-container { max-width: 800px; margin: 0 auto; }
+
+.faq-item {
+    background: var(--white);
+    margin-bottom: 1rem;
+    border-radius: 12px;
+    border: 1px solid #eee;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: 0.6s ease;
+}
+
+.faq-item.visible { 
+    opacity: 1; 
+    transform: translateX(0); 
+}
+
+.faq-item summary {
+    padding: 1.5rem;
+    list-style: none;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.3s;
+}
+
+.faq-item summary::-webkit-details-marker { display: none; }
+
+.faq-item summary:hover { 
+    background: var(--bg-light); 
+    color: var(--primary); 
+}
+
+.faq-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.42s cubic-bezier(0.2, 0.8, 0.2, 1);
+    padding: 0 1.5rem;
+}
+
+.faq-inner {
+    padding-bottom: 1.5rem;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.faq-item[open] .faq-inner {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.1s;
+}
+
+.faq-arrow {
+    transition: transform 0.3s ease;
+    color: var(--primary);
+    font-size: 1.4rem;
+}
+
+.faq-item[open] .faq-arrow {
+    transform: rotate(45deg);
+    color: var(--danger);
 }

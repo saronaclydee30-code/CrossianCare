@@ -50,3 +50,85 @@ document.addEventListener('DOMContentLoaded', () => {
         viewScheduleBtn.addEventListener('click', openDrawer);
     }
 });
+
+const faqObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.2 });
+
+document.querySelectorAll('.faq-item').forEach(item => {
+    faqObserver.observe(item);
+});
+
+const faqs = document.querySelectorAll('.faq-item');
+
+faqs.forEach((faq) => {
+    const summary = faq.querySelector('summary');
+    const content = faq.querySelector('.faq-content');
+
+    if (content) {
+        content.style.maxHeight = '0px';
+    }
+
+    summary.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const isOpen = faq.hasAttribute('open');
+
+        faqs.forEach((otherFaq) => {
+            if (otherFaq !== faq && otherFaq.hasAttribute('open')) {
+                const otherContent = otherFaq.querySelector('.faq-content');
+                const otherInner = otherFaq.querySelector('.faq-inner');
+                if (otherInner) {
+                    otherInner.style.opacity = '0';
+                    otherInner.style.transform = 'translateY(-10px)';
+                }
+                if (otherContent) {
+                    otherContent.style.maxHeight = '0px';
+                }
+                setTimeout(() => {
+                    otherFaq.removeAttribute('open');
+                    if (otherInner) {
+                        otherInner.style.opacity = '';
+                        otherInner.style.transform = '';
+                    }
+                }, 420);
+            }
+        });
+
+        if (!isOpen) {
+            faq.setAttribute('open', '');
+            if (content) {
+                requestAnimationFrame(() => {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                });
+            }
+        } else {
+            const inner = faq.querySelector('.faq-inner');
+            if (inner) {
+                inner.style.opacity = '0';
+                inner.style.transform = 'translateY(-10px)';
+            }
+            if (content) {
+                content.style.maxHeight = '0px';
+            }
+            setTimeout(() => {
+                faq.removeAttribute('open');
+                if (inner) {
+                    inner.style.opacity = '';
+                    inner.style.transform = '';
+                }
+            }, 420);
+        }
+    });
+
+    const resizeObserver = new ResizeObserver(() => {
+        if (faq.hasAttribute('open') && content) {
+            content.style.maxHeight = content.scrollHeight + 'px';
+        }
+    });
+    if (content) resizeObserver.observe(content);
+});

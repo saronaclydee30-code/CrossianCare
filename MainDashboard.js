@@ -143,3 +143,113 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 300); 
     }
 });
+
+const observerOptions = { threshold: 0.1 };
+
+const scrollObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, observerOptions);
+
+const cardsToAnimate = document.querySelectorAll('.tip-card, .status-card, .event-card');
+cardsToAnimate.forEach(card => {
+    card.classList.add('fade-in-scroll');
+    scrollObserver.observe(card);
+});
+
+(function () {
+
+    const revealObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                if (entry.target.classList.contains('section-title')) {
+                    entry.target.classList.add('visible');
+                }
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal').forEach(function (el) {
+        revealObserver.observe(el);
+    });
+
+    const staggerObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+                Array.from(entry.target.children).forEach(function (child, i) {
+                    child.style.opacity = '0';
+                    child.style.transform = 'translateY(28px)';
+                    child.style.transition = 'opacity 0.6s ease ' + (i * 0.15) + 's, transform 0.6s ease ' + (i * 0.15) + 's';
+                    requestAnimationFrame(function () {
+                        requestAnimationFrame(function () {
+                            child.style.opacity = '1';
+                            child.style.transform = 'translateY(0)';
+                        });
+                    });
+                });
+                staggerObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal-stagger').forEach(function (el) {
+        Array.from(el.children).forEach(function (child) {
+            child.style.opacity = '0';
+        });
+        staggerObserver.observe(el);
+    });
+
+    const titleObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                titleObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.section-title').forEach(function (el) {
+        titleObserver.observe(el);
+    });
+
+    document.querySelectorAll('.tip-card').forEach(function (card) {
+        var img = card.querySelector('.tip-icon img');
+        if (!img) return;
+        card.addEventListener('mouseenter', function () {
+            img.style.transition = 'transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
+            img.style.transform = 'scale(1.25) rotate(-8deg)';
+        });
+        card.addEventListener('mouseleave', function () {
+            img.style.transform = 'scale(1) rotate(0deg)';
+        });
+    });
+
+    document.querySelectorAll('.event-card').forEach(function (card) {
+        var badge = card.querySelector('.event-date');
+        if (!badge) return;
+        card.addEventListener('mouseenter', function () {
+            badge.style.transition = 'transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)';
+            badge.style.transform = 'scale(1.08)';
+        });
+        card.addEventListener('mouseleave', function () {
+            badge.style.transform = 'scale(1)';
+        });
+    });
+
+    var navbar = document.querySelector('.navbar');
+    if (navbar) {
+        window.addEventListener('scroll', function () {
+            if (window.scrollY > 10) {
+                navbar.style.boxShadow = '0 4px 20px rgba(0,0,0,0.12)';
+            } else {
+                navbar.style.boxShadow = '0 2px 15px rgba(0,0,0,0.05)';
+            }
+        }, { passive: true });
+    }
+
+})();
