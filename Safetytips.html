@@ -37,6 +37,25 @@
         </div>
     </header>
 
+    <div class="stats-bar">
+        <div class="stat-pill" data-target="8">
+            <span class="stat-num">0</span>
+            <span class="stat-label">Safety Topics Covered</span>
+        </div>
+        <div class="stat-pill" data-target="24">
+            <span class="stat-num">0</span>
+            <span class="stat-label">Hour Emergency Support</span>
+        </div>
+        <div class="stat-pill" data-target="100">
+            <span class="stat-num">0</span>
+            <span class="stat-label">Health Advisories Issued</span>
+        </div>
+        <div class="stat-pill" data-target="5">
+            <span class="stat-num">0</span>
+            <span class="stat-label">Campus Health Partners</span>
+        </div>
+    </div>
+
     <section class="tips-image-section">
         <div class="container">
             <div class="safety-gallery">
@@ -104,14 +123,100 @@
                     </div>
                 </div>
             </div>
-            
-            <div class="back-action">
-                <a href="Services.html" class="btn-secondary-outline">← Back to Services</a>
-            </div>
         </div>
     </section>
 
-    
+    <section class="didyouknow-section">
+        <div class="container">
+
+            <div class="dyk-header">
+                <span class="dyk-badge">Health Facts</span>
+                <h2>Did You <span>Know?</span></h2>
+                <p>Quick health facts every student should know — tap the arrows or dots to explore.</p>
+            </div>
+
+            <div class="dyk-container" id="dykDataContainer">
+                <div class="dyk-data-item" 
+                    data-category="Hydration" 
+                    data-stat="70%"
+                    data-title="Your Body is Mostly Water"
+                    data-img="/Images/Bodywater.png" 
+                    data-alt="Water droplets forming a human silhouette"
+                    data-text="The human body is about <strong>70% water</strong>. Even mild dehydration (losing just 1–2% of body water) can impair concentration, mood, and physical performance. Drink up!">
+                </div>
+
+                <div class="dyk-data-item" 
+                    data-category="Sleep" 
+                    data-stat="8–10h"
+                    data-title="Sleep Powers Your Performance"
+                    data-img="/Images/Sleep.png" 
+                    data-alt="Person sleeping peacefully"
+                    data-text="Teenagers and young adults need <strong>8–10 hours of sleep</strong> per night. Chronic sleep deprivation weakens the immune system and significantly increases the risk of accidents.">
+                </div>
+
+                <div class="dyk-data-item" 
+                    data-category="Hygiene" 
+                    data-stat="160 km/h"
+                    data-title="A Sneeze Travels Fast"
+                    data-img="/Images/Sneeze.png" 
+                    data-alt="Person covering mouth to prevent spread of germs"
+                    data-text="A single sneeze can project droplets at speeds up to <strong>160 km/h</strong> and spread over 8 meters. Always cover your mouth and nose with your elbow, not your hand.">
+                </div>
+
+                <div class="dyk-data-item" 
+                    data-category="Heart Health" 
+                    data-stat="100K"
+                    data-title="Your Heart Never Rests"
+                    data-img="/Images/Heart.png" 
+                    data-alt="Heart health and exercise"
+                    data-text="The heart beats approximately <strong>100,000 times a day</strong>. Just 30 minutes of brisk walking five times a week can reduce your risk of heart disease by up to 35%.">
+                </div>
+
+                <div class="dyk-data-item" 
+                    data-category="Mental Health" 
+                    data-stat="1 in 4"
+                    data-title="Mental Health Matters"
+                    data-img="/Images/MentalHealth.png" 
+                    data-alt="Person meditating for mental wellness"
+                    data-text="<strong>1 in 4 people</strong> worldwide will experience a mental health condition at some point in their lives. Seeking help early is a sign of strength, not weakness.">
+                </div>
+
+                <div class="dyk-data-item" 
+                    data-category="Fire Safety" 
+                    data-stat="Kitchen Fires"
+                    data-title="Kitchen Fires Lead the Stats"
+                    data-img="/Images/Fire.png" 
+                    data-alt="Fire safety awareness"
+                    data-text="Most campus fires are caused by unattended cooking or faulty electrical equipment. Never leave food cooking unattended and <strong>report frayed wires</strong> to facilities immediately.">
+                </div>
+            </div>
+            <div class="dyk-card" id="dykCard">
+                <div class="dyk-card-img">
+                    <img id="dykImg" src="" alt="Health Image" class="dyk-img">
+                    <span class="dyk-category" id="dykCategory"></span>
+                </div>
+                <div class="dyk-card-body">
+                    <div class="dyk-stat-highlight" id="dykStat"></div>
+                    <h3 class="dyk-fact-title" id="dykTitle"></h3>
+                    <p id="dykText"></p>
+                </div>
+            </div>
+
+            <div class="dyk-footer-nav">
+                <div class="dyk-dots" id="dykDots"></div>
+                <div class="dyk-nav-arrows">
+                    <button class="dyk-btn" id="dykPrev">&#8592;</button>
+                    <span class="dyk-counter"><span id="dykCurrent">1</span> / <span id="dykTotal">6</span></span>
+                    <button class="dyk-btn" id="dykNext">&#8594;</button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <div class="back-action">
+        <a href="Services.html" class="btn-secondary-outline">← Back to Services</a>
+    </div>
 
     <footer>
         <div class="container">
@@ -121,5 +226,6 @@
     </footer>
 
     <script src="auth-sync.js"></script>
+    <script src="Safetytips.js"></script>
 </body>
 </html>

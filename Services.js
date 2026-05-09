@@ -51,84 +51,34 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-const faqObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
-    });
-}, { threshold: 0.2 });
+const faqAccordion = document.getElementById('serviceFaqAccordion');
+if (faqAccordion) {
+    faqAccordion.querySelectorAll('.accordion-header').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const item   = btn.closest('.accordion-item');
+            const body   = item.querySelector('.accordion-body');
+            const isOpen = btn.getAttribute('aria-expanded') === 'true';
 
-document.querySelectorAll('.faq-item').forEach(item => {
-    faqObserver.observe(item);
-});
+            faqAccordion.querySelectorAll('.accordion-item').forEach(el => {
+                el.querySelector('.accordion-header').setAttribute('aria-expanded', 'false');
+                el.querySelector('.accordion-body').classList.remove('open');
+            });
 
-const faqs = document.querySelectorAll('.faq-item');
-
-faqs.forEach((faq) => {
-    const summary = faq.querySelector('summary');
-    const content = faq.querySelector('.faq-content');
-
-    if (content) {
-        content.style.maxHeight = '0px';
-    }
-
-    summary.addEventListener('click', (e) => {
-        e.preventDefault();
-
-        const isOpen = faq.hasAttribute('open');
-
-        faqs.forEach((otherFaq) => {
-            if (otherFaq !== faq && otherFaq.hasAttribute('open')) {
-                const otherContent = otherFaq.querySelector('.faq-content');
-                const otherInner = otherFaq.querySelector('.faq-inner');
-                if (otherInner) {
-                    otherInner.style.opacity = '0';
-                    otherInner.style.transform = 'translateY(-10px)';
-                }
-                if (otherContent) {
-                    otherContent.style.maxHeight = '0px';
-                }
-                setTimeout(() => {
-                    otherFaq.removeAttribute('open');
-                    if (otherInner) {
-                        otherInner.style.opacity = '';
-                        otherInner.style.transform = '';
-                    }
-                }, 420);
+            if (!isOpen) {
+                btn.setAttribute('aria-expanded', 'true');
+                body.classList.add('open');
             }
         });
-
-        if (!isOpen) {
-            faq.setAttribute('open', '');
-            if (content) {
-                requestAnimationFrame(() => {
-                    content.style.maxHeight = content.scrollHeight + 'px';
-                });
-            }
-        } else {
-            const inner = faq.querySelector('.faq-inner');
-            if (inner) {
-                inner.style.opacity = '0';
-                inner.style.transform = 'translateY(-10px)';
-            }
-            if (content) {
-                content.style.maxHeight = '0px';
-            }
-            setTimeout(() => {
-                faq.removeAttribute('open');
-                if (inner) {
-                    inner.style.opacity = '';
-                    inner.style.transform = '';
-                }
-            }, 420);
-        }
     });
 
-    const resizeObserver = new ResizeObserver(() => {
-        if (faq.hasAttribute('open') && content) {
-            content.style.maxHeight = content.scrollHeight + 'px';
-        }
-    });
-    if (content) resizeObserver.observe(content);
-});
+    const accordionObserver = new IntersectionObserver(entries => {
+        entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => entry.target.classList.add('visible'), i * 80);
+                accordionObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.2 });
+
+    faqAccordion.querySelectorAll('.accordion-item').forEach(item => accordionObserver.observe(item));
+}

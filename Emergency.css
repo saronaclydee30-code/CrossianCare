@@ -519,11 +519,6 @@ a.btn-cta.active {
     color: var(--primary);
 }
 
-.accordion-icon {
-    font-size: 1.2rem;
-    flex-shrink: 0;
-}
-
 .accordion-arrow {
     margin-left: auto;
     font-size: 1.2rem;
