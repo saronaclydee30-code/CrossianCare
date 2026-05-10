@@ -1,4 +1,3 @@
-// ── Stat counter animation ──
 const statPills = document.querySelectorAll('.stat-pill');
 const statsBar  = document.querySelector('.stats-bar');
 
@@ -23,7 +22,6 @@ const statsObserver = new IntersectionObserver(entries => {
 }, { threshold: 0.5 });
 if (statsBar) statsObserver.observe(statsBar);
 
-// ── Image wrapper scroll-reveal ──
 const revealObserver = new IntersectionObserver(entries => {
     entries.forEach((entry, i) => {
         if (entry.isIntersecting) {
@@ -34,7 +32,6 @@ const revealObserver = new IntersectionObserver(entries => {
 }, { threshold: 0.1 });
 document.querySelectorAll('.image-wrapper').forEach(el => revealObserver.observe(el));
 
-// ── Reminder cards scroll-reveal ──
 const reminderObserver = new IntersectionObserver(entries => {
     entries.forEach((entry, i) => {
         if (entry.isIntersecting) {
@@ -45,7 +42,6 @@ const reminderObserver = new IntersectionObserver(entries => {
 }, { threshold: 0.1 });
 document.querySelectorAll('.reminder-card').forEach(el => reminderObserver.observe(el));
 
-// ── Did You Know rotator (HTML-Driven) ──
 const dataItems = document.querySelectorAll('.dyk-data-item');
 const facts = Array.from(dataItems).map(item => ({
     category: item.dataset.category,
@@ -67,10 +63,8 @@ const currEl   = document.getElementById('dykCurrent');
 const totalEl  = document.getElementById('dykTotal');
 const dotsWrap = document.getElementById('dykDots');
 
-// Set Total Counter
 if (totalEl) totalEl.textContent = facts.length;
 
-// Inject Content
 const updateContent = (idx) => {
     const f = facts[idx];
     if(imgEl) { imgEl.src = f.img; imgEl.alt = f.alt; }
@@ -81,7 +75,6 @@ const updateContent = (idx) => {
     if(currEl) currEl.textContent = idx + 1;
 };
 
-// Build interactive dots
 if(dotsWrap) {
     facts.forEach((_, i) => {
         const dot = document.createElement('button');
@@ -120,10 +113,8 @@ const showFact = (idx, dir) => {
     }, 300);
 };
 
-// Load first fact immediately
 if(facts.length > 0) updateContent(0);
 
-// Auto-advance Logic
 let autoTimer = setInterval(() => {
     if(facts.length > 0) {
         current = (current + 1) % facts.length;
@@ -141,7 +132,6 @@ const resetTimer = () => {
     }, 6000);
 };
 
-// Click Listeners
 document.getElementById('dykNext')?.addEventListener('click', () => {
     if(facts.length > 0) {
         current = (current + 1) % facts.length;
@@ -155,21 +145,5 @@ document.getElementById('dykPrev')?.addEventListener('click', () => {
         current = (current - 1 + facts.length) % facts.length;
         showFact(current, -1);
         resetTimer();
-    }
-});
-
-// ── Profile dropdown ──
-const profileIcon = document.getElementById('profileIcon');
-const profileDropdown = document.getElementById('profileDropdown');
-profileIcon?.addEventListener('click', e => {
-    e.stopPropagation();
-    profileDropdown.classList.toggle('show');
-});
-document.addEventListener('click', () => profileDropdown?.classList.remove('show'));
-
-document.getElementById('logoutBtn')?.addEventListener('click', () => {
-    if (confirm('Are you sure you want to log out?')) {
-        localStorage.removeItem('userEmail');
-        window.location.href = 'index.html';
     }
 });

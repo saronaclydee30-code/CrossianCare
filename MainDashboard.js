@@ -45,15 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    if (logoutBtn) {
-        logoutBtn.addEventListener('click', () => {
-            if(confirm("Are you sure you want to log out?")) {
-                localStorage.removeItem('userEmail');
-                window.location.href = 'index.html';
-            }
-        });
-    }
-
     if (emailUsBtn) {
         emailUsBtn.addEventListener('click', () => {
             emailDrawer.classList.add('open');
